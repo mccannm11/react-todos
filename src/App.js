@@ -18,20 +18,43 @@ class App extends Component {
     }
   }
 
-  handleAddTodo(event){
-    let newArray = [...this.state.todos, {name: this.state.newTodo, done: false} ];
-    this.setState({todos: newArray, newTodo: ""});
+  handleAddTodo(){
+    let newTodo = this.state.newTodo;
+    if (newTodo) {
+      let newArray = [...this.state.todos, {name: newTodo, done: false} ];
+      this.setState({todos: newArray, newTodo: ""});
+    }
   }
 
   handleChangeInput(event){
     this.setState({newTodo: event.target.value})
   }
 
-  handleTodoChecked(event){
+  handleOnKeyPress(event){
+    if (event.key === 'Enter') {
+      this.handleAddTodo();
+    }
+  }
+
+  handleTodoEvent(event){
+    event.stopPropagation();
+    let className = event.target.className;
     let index = event.target.getAttribute('data-index');
     let newTodos = this.state.todos.slice();
-    newTodos[index].done = !newTodos[index].done;
+
+    if (className.includes('todo-item')){
+      newTodos[index].done = !newTodos[index].done;
+      
+    } else if (className.includes('name')){
+      newTodos[index].name = "New Name"
+    
+    } else if (className.includes('delete')){
+      newTodos.splice(index, 1)
+
+    }
+
     this.setState({todos: newTodos});
+   
   }
 
   render() {
@@ -41,19 +64,22 @@ class App extends Component {
           <input 
             value={this.state.newTodo} 
             onChange={this.handleChangeInput.bind(this)} 
-            type="text" />
+            onKeyPress={this.handleOnKeyPress.bind(this)}
+            type="text"
+            placeholder="What do you need to do?"
+             />
           <button 
             onClick={this.handleAddTodo.bind(this)}> 
-            Add 
+            + 
           </button>
         </div>
-        <TodoList todos={this.state.todos} handleTodoChecked={this.handleTodoChecked.bind(this)}/>
+        <TodoList todos={this.state.todos} handleTodoEvent={this.handleTodoEvent.bind(this)}/>
       </div>
     );
   }
 }
 
-const TodoList = ({todos, handleTodoChecked}) => {
+const TodoList = ({todos, handleTodoEvent}) => {
   return (      
     <div className="todo-list">
       <ul>
@@ -63,7 +89,7 @@ const TodoList = ({todos, handleTodoChecked}) => {
               key={index}
               index={index}
               todo={todo}
-              handleTodoChecked={handleTodoChecked} 
+              handleTodoEvent={handleTodoEvent} 
             />
             )
         })}
@@ -72,18 +98,27 @@ const TodoList = ({todos, handleTodoChecked}) => {
   )
 }
 
-const Todo = ({todo, handleTodoChecked, index}) => {
+const Todo = ({todo, handleTodoEvent, index}) => {
   return (
-    <li className="todo-item">
-      <div className="name">
+    <li 
+      className={'todo-item ' + (todo.done ? 'done' : '') }
+      data-index={index}
+      onClick={handleTodoEvent}
+      >
+      <div
+        data-index={index}
+        className="name"
+        onClick={handleTodoEvent}
+        >
         {todo.name}
       </div>
-      <input 
-        data-index={index} 
-        onChange={handleTodoChecked} 
-        type="checkbox" 
-        checked={todo.done ? "checked" : ""} 
-        />
+      <button
+        data-index={index}
+        className="delete"
+        onClick={handleTodoEvent} 
+        >
+        Delete
+      </button>
     </li>
     )
 }
