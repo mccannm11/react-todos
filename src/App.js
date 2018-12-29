@@ -42,11 +42,11 @@ class App extends Component {
     let index = event.target.getAttribute('data-index');
     let newTodos = this.state.todos.slice();
 
-    if (className.includes('todo-item')){
+    if (className.includes('complete')){
       newTodos[index].done = !newTodos[index].done;
       
     } else if (className.includes('name')){
-      newTodos[index].name = "New Name"
+      newTodos[index].name = newTodos[index].value;
     
     } else if (className.includes('delete')){
       newTodos.splice(index, 1)
@@ -105,13 +105,20 @@ const Todo = ({todo, handleTodoEvent, index}) => {
       data-index={index}
       onClick={handleTodoEvent}
       >
-      <div
+      <button
+        data-index={index}
+        className="complete"
+        onClick={handleTodoEvent}
+      >
+        Complete
+      </button>
+      <input
         data-index={index}
         className="name"
         onClick={handleTodoEvent}
-        >
-        {todo.name}
-      </div>
+        value={todo.name}
+      />
+            
       <button
         data-index={index}
         className="delete"
