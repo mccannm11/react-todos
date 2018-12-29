@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import PropTypes from 'prop-types';
-import './App.css';
+import './App.scss';
 
 var TODOS = [
         {name: "testing 123", done: false },
