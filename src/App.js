@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import PropTypes from 'prop-types';
+import TodoList from './TodoList.js';
+
 import './App.scss';
 
 var TODOS = [
@@ -50,7 +50,6 @@ class App extends Component {
     
     } else if (className.includes('delete')){
       newTodos.splice(index, 1)
-
     }
 
     this.setState({todos: newTodos});
@@ -77,57 +76,6 @@ class App extends Component {
       </div>
     );
   }
-}
-
-const TodoList = ({todos, handleTodoEvent}) => {
-  return (      
-    <div className="todo-list">
-      <ul>
-        {todos.map((todo, index) => {
-          return (
-            <Todo 
-              key={index}
-              index={index}
-              todo={todo}
-              handleTodoEvent={handleTodoEvent} 
-            />
-            )
-        })}
-      </ul>
-    </div>
-  )
-}
-
-const Todo = ({todo, handleTodoEvent, index}) => {
-  return (
-    <li 
-      className={'todo-item ' + (todo.done ? 'done' : '') }
-      data-index={index}
-      onClick={handleTodoEvent}
-      >
-      <button 
-        className="complete" 
-        onClick={handleTodoEvent} 
-        data-index={index}
-        >
-        <i className={ (todo.done ? "done" : "not-done") + " status-icon"}/>
-      </button>  
-      <input
-        data-index={index}
-        className="name"
-        onClick={handleTodoEvent}
-        value={todo.name}
-      />
-            
-      <button
-        data-index={index}
-        className="delete"
-        onClick={handleTodoEvent} 
-        >
-        <i className="trash" />
-      </button>
-    </li>
-    )
 }
 
 export default App;
