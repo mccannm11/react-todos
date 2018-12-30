@@ -1,12 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 
+$app-background-color: #f5f5f5;
+$icon-size: 20px;
 
 body {
 	font-family: 'Raleway', sans-serif;
-
 }
-$app-background-color: #f5f5f5;
-$icon-size: 20px;
 
 .app {
   margin: 20%;
@@ -19,13 +18,11 @@ $icon-size: 20px;
 	padding: 0;
   }
 }
-
-.todo-list .todo-item{
+.todo-item{
 	display: flex;
 	margin: 0;
 	width: 100%;
 	height: 2em;
-
 	&:hover .delete{
 		opacity: 1;
 	}
@@ -64,8 +61,6 @@ $icon-size: 20px;
 			outline: none;
 		}
 	}
-
-
 	.status-icon{
 		pointer-events: none;
 		display: inline-block;
@@ -109,7 +104,6 @@ $icon-size: 20px;
 	}
 }
 
-
 .todo-list-input {
 	height: 3em;
 	margin: 0;
@@ -144,7 +138,3 @@ $icon-size: 20px;
 		}
 	}
 }
-
-
-
-
