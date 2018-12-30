@@ -105,13 +105,13 @@ const Todo = ({todo, handleTodoEvent, index}) => {
       data-index={index}
       onClick={handleTodoEvent}
       >
-      <button
+      <button 
+        className="complete" 
+        onClick={handleTodoEvent} 
         data-index={index}
-        className="complete"
-        onClick={handleTodoEvent}
-      >
-        Complete
-      </button>
+        >
+        <i className={ (todo.done ? "done" : "not-done") + " status-icon"}/>
+      </button>  
       <input
         data-index={index}
         className="name"
@@ -124,7 +124,7 @@ const Todo = ({todo, handleTodoEvent, index}) => {
         className="delete"
         onClick={handleTodoEvent} 
         >
-        Delete
+        <i className="trash" />
       </button>
     </li>
     )

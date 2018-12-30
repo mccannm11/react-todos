@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 
+
 body {
 	font-family: 'Raleway', sans-serif;
 
 }
 $app-background-color: #f5f5f5;
+$icon-size: 20px;
 
 .app {
   margin: 20%;
@@ -19,31 +21,85 @@ $app-background-color: #f5f5f5;
 }
 
 .todo-list .todo-item{
-	display: block;
+	display: flex;
 	margin: 0;
 	width: 100%;
 	height: 2em;
 
+	&:hover .delete{
+		opacity: 1;
+	}
 	.delete{
-		float: right;
-		text-align: right;
 		padding-left: .3em;
+		width: 10%;
+		background-color: rgba(0,0,0,0);
+		border: none;
+		margin: 0;
+		padding: 0;
+		width: 20%;
+		text-align: right;
+		padding-right: 4.1em;
+		opacity: 0;
+		&:focus{
+			outline: none;
+		}
+		.trash{
+			background-image: url(/icons/trash.png);
+			pointer-events: none;
+			display: inline-block;
+			background-size: $icon-size - 5px;
+			width: $icon-size - 5px;
+			height: $icon-size - 5px;
+		}
 	}
 	.complete{
+		background-color: rgba(0,0,0,0);
+		border: none;
+		display: inline;
+		margin-top: .1em;
+		&:hover{
+			cursor: pointer;
+		}
+		&:focus{
+			outline: none;
+		}
+	}
 
+
+	.status-icon{
+		pointer-events: none;
+		display: inline-block;
+		background-size: $icon-size;
+		width: $icon-size;
+		height: $icon-size;
+		margin: 0;
+		padding: 0;
+		&.done{
+			background-image: url(/icons/done.png);
+
+		}
+		&.not-done{
+			background-image: url(/icons/not-done.png);
+		}
 	}
 	.name{
 		text-align: left;
 		display: inline-block;
+		font-size: 1em;
+		color: darken($app-background-color, 70);
 		padding-left: .3em;
 		border: 0;
 		background-color: $app-background-color;
+		width: 80%;
+		margin: 0;
+		padding: 0;
 		&:focus{
 			outline: none;
 		}
 	}
 	&.done .name{
 		text-decoration: line-through;
+		color: darken($app-background-color, 30);
 	}
 	&:hover{
 		background-color: lighten($app-background-color, 50);
@@ -55,12 +111,13 @@ $app-background-color: #f5f5f5;
 
 
 .todo-list-input {
-	height: 2em;
+	height: 3em;
 	margin: 0;
 	padding: 0;
 	display: flex;
 	padding-left: .3em;
 	input {
+		font-size: 1em;
 		border: none;
 		margin: 0;
 		padding: 0;
