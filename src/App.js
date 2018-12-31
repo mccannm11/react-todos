@@ -4,9 +4,9 @@ import TodoList from './TodoList.js';
 import './App.scss';
 
 var TODOS = [
-        {name: "testing 123", done: false },
-        {name: "cook dinner", done: true },
-        {name: "play trumpet", done: true}
+  {name: "testing 123", done: false },
+  {name: "cook dinner", done: true },
+  {name: "play trumpet", done: true}
 ]
 
 class App extends Component {
@@ -38,22 +38,22 @@ class App extends Component {
 
   handleTodoEvent(event){
     event.stopPropagation();
-    let className = event.target.className;
+    let action = event.target.getAttribute('data-action');
     let index = event.target.getAttribute('data-index');
     let newTodos = this.state.todos.slice();
 
-    if (className.includes('complete')){
-      newTodos[index].done = !newTodos[index].done;
-      
-    } else if (className.includes('name')){
-      newTodos[index].name = newTodos[index].value;
-    
-    } else if (className.includes('delete')){
-      newTodos.splice(index, 1)
+    switch (action) {
+      case "complete":
+        newTodos[index].done = !newTodos[index].done;
+        break;
+      case "name":
+        newTodos[index].name = newTodos[index].value;
+        break;
+      case "delete":
+        newTodos.splice(index, 1)
+        break;
     }
-
     this.setState({todos: newTodos});
-   
   }
 
   render() {

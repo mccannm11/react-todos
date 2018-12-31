@@ -8,7 +8,8 @@ const Todo = ({todo, handleTodoEvent, index}) => {
       onClick={handleTodoEvent}
       >
       <button 
-        className="complete" 
+        className="complete"
+        data-action="complete"
         onClick={handleTodoEvent} 
         data-index={index}
         >
@@ -17,6 +18,7 @@ const Todo = ({todo, handleTodoEvent, index}) => {
       <input
         data-index={index}
         className="name"
+        data-action="rename"
         onClick={handleTodoEvent}
         value={todo.name}
       />
@@ -24,6 +26,7 @@ const Todo = ({todo, handleTodoEvent, index}) => {
       <button
         data-index={index}
         className="delete"
+        data-action="delete"
         onClick={handleTodoEvent} 
         >
         <i className="trash" />
