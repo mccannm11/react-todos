@@ -23,6 +23,7 @@ body *{
 	margin: 0;
 	width: 100%;
 	height: 2em;
+
 	&:hover .delete{
 		opacity: 1;
 	}
@@ -81,7 +82,7 @@ body *{
 		text-align: left;
 		display: inline-block;
 		font-size: .9em;
-		color: darken($app-background-color, 70);
+		color: darken($app-background-color, 60);
 		padding-left: .3em;
 		border: 0;
 		background-color: $app-background-color;

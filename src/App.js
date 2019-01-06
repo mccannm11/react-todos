@@ -62,10 +62,23 @@ class App extends Component {
   }
 
   handleFooterEvent(event){
-    alert("delete selected")
+    let newTodos = this.state.todos.filter((item) => {return !item.done; });
+    this.setState({todos: newTodos});
   }
 
   render() {
+    let footer;
+
+    if (this.state.todos.length > 0) {
+      footer = (
+            <TodoListFooter 
+              doneTodos={this.doneTodos().length}
+              allTodos={this.state.todos.length}
+              handleFooterEvent={this.handleFooterEvent.bind(this)}
+            />
+        )
+    }
+
     return (
       <div className="app">
         <div className="todo-list-input">
@@ -85,11 +98,7 @@ class App extends Component {
           todos={this.state.todos}
           handleTodoEvent={this.handleListEvent.bind(this)}
           />
-        <TodoListFooter 
-          doneTodos={this.doneTodos().length}
-          allTodos={this.state.todos.length}
-          handleFooterEvent={this.handleFooterEvent.bind(this)}
-          />
+        {footer}
       </div>
     );
   }
