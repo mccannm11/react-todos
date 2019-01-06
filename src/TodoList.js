@@ -20,4 +20,4 @@ const TodoList = ({todos, handleTodoEvent}) => {
   )
 }
 
-export default TodoList
+export default TodoList;

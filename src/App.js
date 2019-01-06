@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TodoList from './TodoList.js';
+import TodoListFooter from './TodoListFooter.js'
 
 import './App.scss';
 
@@ -11,11 +12,15 @@ var TODOS = [
 
 class App extends Component {
   constructor(props){
-    super(props);
+    super(props); 
     this.state = {
       newTodo: "",
       todos: TODOS
     }
+  } 
+
+  doneTodos(){
+    return this.state.todos.filter((item) => {return item.done; });
   }
 
   handleAddTodo(){
@@ -36,7 +41,7 @@ class App extends Component {
     }
   }
 
-  handleTodoEvent(event){
+  handleListEvent(event){
     event.stopPropagation();
     let action = event.target.getAttribute('data-action');
     let index = event.target.getAttribute('data-index');
@@ -56,6 +61,10 @@ class App extends Component {
     this.setState({todos: newTodos});
   }
 
+  handleFooterEvent(event){
+    alert("delete selected")
+  }
+
   render() {
     return (
       <div className="app">
@@ -72,7 +81,15 @@ class App extends Component {
             + 
           </button>
         </div>
-        <TodoList todos={this.state.todos} handleTodoEvent={this.handleTodoEvent.bind(this)}/>
+        <TodoList 
+          todos={this.state.todos}
+          handleTodoEvent={this.handleListEvent.bind(this)}
+          />
+        <TodoListFooter 
+          doneTodos={this.doneTodos().length}
+          allTodos={this.state.todos.length}
+          handleFooterEvent={this.handleFooterEvent.bind(this)}
+          />
       </div>
     );
   }
