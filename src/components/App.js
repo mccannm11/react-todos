@@ -7,30 +7,24 @@ import React, { Component } from 'react';
 import Workspace from './Workspace.js';
 import LoginRegister from './Login/LoginRegister.js';
 
-
 class App extends Component {
   constructor(props){
     super(props);
   }
 
   render(){
-    const auth = this.props.auth;
-    return auth ? (<Workspace />) : (<LoginRegister/>) 
+    return this.props.auth ? (<Workspace />) : (<LoginRegister/>) 
   }
-
 }
 
-const mapStateToProps = state => {
-  return {
+const mapStateToProps = state => ({
     auth: state.auth.auth,
     token: state.auth.token
-  };
-}
+})
 
-const mapDispatchToProps = dispatch => {
-  return {
-  };
-}
+const mapDispatchToProps = dispatch => ({
+
+})
 
 
 export default connect(
