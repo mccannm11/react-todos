@@ -70,15 +70,15 @@ body *{
 		height: $icon-size;
 		margin: 0;
 		padding: 0;
-		&.done{
+		&.completed{
 			background-image: url(/icons/done.png);
 
 		}
-		&.not-done{
+		&.not-completed{
 			background-image: url(/icons/not-done.png);
 		}
 	}
-	.name{
+	.title{
 		text-align: left;
 		display: inline-block;
 		font-size: .9em;
@@ -93,13 +93,13 @@ body *{
 			outline: none;
 		}
 	}
-	&.done .name{
+	&.done .title{
 		text-decoration: line-through;
 		color: darken($app-background-color, 30);
 	}
 	&:hover{
 		background-color: lighten($app-background-color, 50);
-		.name {
+		.title {
 			background-color: lighten($app-background-color, 50);
 		}
 	}
