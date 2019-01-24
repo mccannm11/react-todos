@@ -33,3 +33,21 @@ export const fetchDeleteTodo = (id) =>
           })
         )
   }
+
+export const fetchTodosAction = _ => 
+  dispatch => {
+    dispatch({ type: types.FETCH_ALL_TODOS })
+    return (
+      agent.Todos.fetchAll()
+        .then( data => dispatch({ type: types.RECEIVE_ALL_TODOS, data }))
+    )
+  }
+
+export  const createTodoAction = (value) =>
+  dispatch => {
+    dispatch({ type: types.FETCH_CREATE_TODO })
+    return (
+      agent.Todos.createTodo(value)
+        .then( data => dispatch({ type: types.RECEIVE_CREATE_TODO, data }))
+      )
+  }

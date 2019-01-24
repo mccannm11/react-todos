@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as todoActions from '../actions/loginActions';
 import { LOGIN } from '../actions/actionTypes';
-
 import React, { Component } from 'react';
 import Workspace from './Workspace.js';
 import LoginRegister from './Login/LoginRegister.js';
@@ -17,7 +16,6 @@ class App extends Component {
     const auth = this.props.auth;
     return auth ? (<Workspace />) : (<LoginRegister/>) 
   }
-
 }
 
 const mapStateToProps = state => {
@@ -27,12 +25,7 @@ const mapStateToProps = state => {
   };
 }
 
-const mapDispatchToProps = dispatch => {
-  return {};
-}
-
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  _ => {}
 )(App);

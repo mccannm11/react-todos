@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import TodoList from './TodoList/TodoList';
 import TodoListFooter from './TodoList/TodoListFooter'
 import agent from '../agent';
+import './Workspace.scss';
 
 import {
   FETCH_ALL_TODOS,
@@ -13,34 +14,16 @@ import {
   RECEIVE_CREATE_TODO
 } from '../actions/actionTypes';
 
-import './Workspace.scss';
 
+import {
+  createTodoAction,
+  fetchTodosAction
+} from '../actions/todoActions';
 
 const mapStateToProps = state => ({ 
   todos: state.workspace.todos,
   newTodo: state.workspace.newTodo,
 });
-
-
-const actionCreator = (type, data) => ({ type: type, data })
-
-const fetchTodosAction = _ => 
-  dispatch => {
-    dispatch({ type: FETCH_ALL_TODOS })
-    return (
-      agent.Todos.fetchAll()
-        .then( data => dispatch({ type: RECEIVE_ALL_TODOS, data }))
-    )
-  }
-
-const createTodoAction = (value) =>
-  dispatch => {
-    dispatch({ type: FETCH_CREATE_TODO })
-    return (
-      agent.Todos.createTodo(value)
-        .then( data => dispatch({ type: RECEIVE_CREATE_TODO, data }))
-      )
-  }
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -52,8 +35,6 @@ const mapDispatchToProps = dispatch => {
       dispatch(fetchTodosAction())
   }
 }
-  
-
 
 class Workspace extends Component {
   constructor(){
@@ -67,7 +48,6 @@ class Workspace extends Component {
   }
 
   render() {
-
     return (
       <div className="app">
         <div className="todo-list-input">

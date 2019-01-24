@@ -7,9 +7,7 @@ const API_ROOT = 'http://localhost:3000/api';
 
 const responseBody = res => res.body;
 
-const tokenHeader = { 'x-access-token': token }
-
-const token = window.localStorage.getItem('token')
+const token = window.localStorage.getItem('token') // WAAAHOOO
 
 const requests = {
   del: (url) =>
@@ -50,6 +48,6 @@ const Todos = {
 };
 
 export default {
-	Auth,
+  Auth,
   Todos
 };

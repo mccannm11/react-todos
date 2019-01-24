@@ -26,7 +26,6 @@ const Todo = ({todo, handleTodoEvent}) => {
         value={todo.title}
         data-id={todo._id}
       />
-            
       <button
         className="delete"
         data-action="delete"
