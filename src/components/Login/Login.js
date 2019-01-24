@@ -4,22 +4,9 @@ import { UPDATE_FIELD_AUTH, FETCH_LOGIN, RECEIVE_LOGIN } from '../../actions/act
 import { connect } from 'react-redux';
 import agent from '../../agent';
 
+import { performLogin } from '../../actions/loginActions';
+
 const mapStateToProps = state => ({ ...state.auth });
-
-
-const actionCreator = (type, data) => ( {type: type, data} )
-
-const performLogin = (email, pass) => 
-  dispatch => {
-    dispatch({ type: FETCH_LOGIN })
-    return (
-      agent.Auth.login(email, pass)
-      .then(data => {
-        dispatch(actionCreator(RECEIVE_LOGIN, data))
-      })
-    )
-  }
-
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -31,7 +18,6 @@ const mapDispatchToProps = dispatch => {
       dispatch(performLogin(email, pass))
   }
 }
-  
 
 class Login extends Component {
   constructor(){

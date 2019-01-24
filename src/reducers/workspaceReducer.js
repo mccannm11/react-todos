@@ -6,8 +6,6 @@ const defaultState = {
 };
 
 export default (state = defaultState, action) => {
-  console.log("WORKSPACEREDUCER: ", action, state);
-
   switch (action.type) {
 
   case actions.FETCH_ALL_TODOS:

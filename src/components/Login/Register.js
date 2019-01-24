@@ -6,27 +6,12 @@ import {
   RECEIVE_REGISTER_USER
 } from '../../actions/actionTypes';
 
-
-
-
-const fetchRegister = (name, email, password) =>
-  dispatch => {
-    dispatch({ type: FETCH_REGISTER_USER })
-    agent.Auth.register(name,email,password)
-      .then(data => {
-        dispatch({ type: RECEIVE_REGISTER_USER, data })
-      })
-  }
-
-const mapStateToProps = state => ({
-
-})
+import { fetchRegister } from '../../actions/loginActions';
 
 const mapDispatchToProps = dispatch => ({
   onRegister: (name, email, password) =>
     dispatch(fetchRegister(name, email, password))
 })
-
 
 class Register extends Component {
   constructor(props){
@@ -90,4 +75,4 @@ class Register extends Component {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default connect(_ => {}, mapDispatchToProps)(Register);

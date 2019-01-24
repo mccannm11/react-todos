@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Todo from './Todo.js';
-import agent from '../../agent';
 
 import { 
   FETCH_DELETE_TODO,
@@ -13,43 +12,11 @@ import {
   RECEIVE_TOGGLE_TODO
 } from '../../actions/actionTypes';
 
-
-
-// ACTIONS
-const fetchEditTodo = (id, title, completed) => 
-  dispatch => {
-    dispatch({ type: FETCH_EDIT_TODO, id } )
-      return (
-        agent.Todos.updateTodo(id, title, completed)
-          .then( data => {
-            dispatch({ type: RECEIVE_EDIT_TODO , data })
-          })
-        )
-  }
-
-const fetchToggleTodo = (id, title, completed) => 
-  dispatch => {
-    dispatch({ type: FETCH_TOGGLE_TODO, id } )
-      return (
-        agent.Todos.updateTodo(id, title, completed)
-          .then( data => {
-            dispatch({ type: RECEIVE_TOGGLE_TODO , data })
-          })
-        )
-  }
-
-const fetchDeleteTodo = (id) => 
-  dispatch => {
-    dispatch({ type: FETCH_DELETE_TODO, id } )
-      return (
-        agent.Todos.deleteTodo(id)
-          .then( data => {
-            dispatch({ type: RECEIVE_DELETE_TODO , data })
-          })
-        )
-  }
-
-
+import {
+  fetchEditTodo,
+  fetchToggleTodo,
+  fetchDeleteTodo
+} from '../../actions/todoActions';
 
 const mapStateToProps = state => ({ 
   todos: state.workspace.todos
@@ -95,7 +62,7 @@ class TodoList extends Component {
   }
 
   render(){
-    return (      
+    return (
       <div className="todo-list">
         <ul>
           {this.props.todos.map( todo => {
